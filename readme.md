@@ -26,10 +26,10 @@ $client->method(1,2,3)
 $client->notify()->method(1,2,3)
 // or batch call
 $client->batch()->method(1,2,3)->method2(1,2)->exec();
-// or batch notify
+// or batch notification
 $client->batch()->notify()->method(1,2,3)->method2(1,2)->exec();
-// or batch mixed notify and call
-// if all batch call is notify it will send async 
+// or batch mixed notification and call
+// if all batch call is notify it will send async
 $client->batch()
        ->notify()
        ->method(1,2,3)
