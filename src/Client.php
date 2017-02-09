@@ -49,7 +49,7 @@ class Client
                 }
             }
         } else {
-            $async = isset($this->payload['id']);
+            $async = !isset($this->payload['id']);
         }
         if ($async) {
             $this->httpclient->postAsync($this->serverUrl, [
