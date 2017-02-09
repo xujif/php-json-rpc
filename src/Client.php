@@ -10,7 +10,6 @@ namespace Xujif\JsonRpc;
 
 use GuzzleHttp\Client as HttpClient;
 
-
 class Client
 {
     protected $httpclient;
@@ -45,7 +44,7 @@ class Client
         if ($isBatch) {
             foreach ($this->payload as $req) {
                 if (isset($req['id'])) {
-                    $async = true;
+                    $async = false;
                     break;
                 }
             }
@@ -65,7 +64,7 @@ class Client
         if ($res->getStatusCode() != 200) {
             throw new \BadMethodCallException('remote rpc not return 200');
         }
-        $json = (string)$res->getBody();
+        $json = (string) $res->getBody();
         $data = json_decode($json, true);
         if (!is_array($data)) {
             throw new \BadMethodCallException('parse result error');
@@ -85,7 +84,6 @@ class Client
         }
     }
 
-
     public function call($remoteMethod, $args)
     {
         if ($this->batchMode) {
@@ -93,14 +91,14 @@ class Client
                 $this->payload[] = [
                     'method' => $remoteMethod,
                     'params' => $args,
-                    'jsonrpc' => '2.0'
+                    'jsonrpc' => '2.0',
                 ];
             } else {
                 $this->payload[] = [
                     'id' => mt_rand(100000, 999999),
                     'method' => $remoteMethod,
                     'params' => $args,
-                    'jsonrpc' => '2.0'
+                    'jsonrpc' => '2.0',
                 ];
             }
             return $this;
@@ -109,14 +107,14 @@ class Client
                 $this->payload = [
                     'method' => $remoteMethod,
                     'params' => $args,
-                    'jsonrpc' => '2.0'
+                    'jsonrpc' => '2.0',
                 ];
             } else {
                 $this->payload = [
                     'id' => mt_rand(100000, 999999),
                     'method' => $remoteMethod,
                     'params' => $args,
-                    'jsonrpc' => '2.0'
+                    'jsonrpc' => '2.0',
                 ];
             }
             return $this->exec();
