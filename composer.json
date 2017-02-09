@@ -1,0 +1,24 @@
+{
+  "name": "xujif/guzzle-json-rpc",
+  "description": "json-rpc server and client base on guzzle,support async",
+  "license": "MIT",
+  "keywords": [
+    "guzzle json rpc webservice"
+  ],
+  "authors": [
+    {
+      "name": "xujif",
+      "email": "i@xujif.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "guzzlehttp/guzzle": "^6.0",
+    "guzzlehttp/promises": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Xujif\\JsonRpc\\": "src/"
+    }
+  }
+}
