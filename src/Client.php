@@ -21,7 +21,11 @@ class Client
     public function __construct($serverUrl, $headers = [], $debug = false)
     {
         $this->serverUrl = $serverUrl;
-        $this->httpclient = new HttpClient(['debug' => $debug, 'headers' => $headers]);
+        $this->httpclient = new HttpClient([
+            'debug' => $debug,
+            'http_errors' => false,
+            'headers' => $headers
+        ]);
     }
 
     public function batch()
@@ -64,7 +68,7 @@ class Client
         if ($res->getStatusCode() != 200) {
             throw new \BadMethodCallException('remote rpc not return 200');
         }
-        $json = (string) $res->getBody();
+        $json = (string)$res->getBody();
         $data = json_decode($json, true);
         if (!is_array($data)) {
             throw new \BadMethodCallException('parse result error');

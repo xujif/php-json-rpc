@@ -112,9 +112,9 @@ class Server
         }
     }
 
-    public function handle()
+    public function handle($requestJson = null)
     {
-        $requestJson = file_get_contents('php://input');
+        $requestJson = $requestJson ? $requestJson : file_get_contents('php://input');
         $request = json_decode($requestJson, true);
         if (!is_array($request)) {
             return [
