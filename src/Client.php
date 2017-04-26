@@ -82,7 +82,7 @@ class Client
             }, $data);
         } else {
             if (isset($data['error'])) {
-                throw new \BadMethodCallException($json);
+                throw new RemoteException($data['error']['message']);
             }
             return $data['result'];
         }

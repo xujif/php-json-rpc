@@ -12,7 +12,9 @@ class Server
 {
     protected $apiObject;
 
-    protected $handleExceptions = [];
+    protected $handleExceptions = [
+        RpcException::class
+    ];
 
     public function __construct($obj)
     {
@@ -103,7 +105,7 @@ class Server
                         'jsonrpc' => "2.0",
                         'error' => [
                             'code' => -32000,
-                            'message' => 'Server Error'
+                            'message' => $e->getMessage()
                         ]
                     ];
                 }
