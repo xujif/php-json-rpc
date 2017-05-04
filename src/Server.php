@@ -13,7 +13,7 @@ class Server
     protected $apiObject;
 
     protected $handleExceptions = [
-        RpcException::class
+        RemoteException::class
     ];
 
     public function __construct($obj)
